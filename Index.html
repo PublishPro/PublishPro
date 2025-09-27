@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PublishPro - Помощь с научными публикациями</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 60px 0;
+            color: white;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="%23ffffff" opacity="0.1"/><circle cx="80" cy="40" r="1" fill="%23ffffff" opacity="0.1"/><circle cx="40" cy="80" r="1" fill="%23ffffff" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') repeat;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero-logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 30px;
+            border-radius: 50%;
+            background: white;
+            border: 3px solid rgba(255,255,255,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+        }
+        
+        .hero-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        
+        .hero-logo-placeholder {
+            font-size: 48px;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 300;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            line-height: 1.8;
+        }
+        
+        .main-content {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            margin: -40px auto 60px;
+            padding: 60px 40px;
+            max-width: 1000px;
+        }
+        
+        .authors-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+            padding-bottom: 50px;
+            border-bottom: 2px solid #ecf0f1;
+        }
+        
+        .author-card {
+            text-align: center;
+            padding: 30px;
+            border-radius: 15px;
+            background: #f8f9fa;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .author-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #2c3e50, #3498db);
+        }
+        
+        .author-avatar {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: white;
+            font-weight: bold;
+            overflow: hidden;
+        }
+        
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        
+        .author-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .author-title {
+            color: #7f8c8d;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .author-desc {
+            color: #5a6c7d;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        
+        .problems-solutions-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .problem-section {
+            padding: 40px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border-left: 5px solid #e74c3c;
+        }
+        
+        .problem-section h2 {
+            color: #e74c3c;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .problem-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .problem-list li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            color: #5a6c7d;
+        }
+        
+        .problem-list li::before {
+            content: '⌐';
+            position: absolute;
+            left: 0;
+            top: 10px;
+        }
+        
+        .solution-section {
+            padding: 40px;
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            border-radius: 15px;
+            color: white;
+        }
+        
+        .solution-section h2 {
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .solution-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .solution-list li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            opacity: 0.9;
+        }
+        
+        .solution-list li::before {
+            content: '✅';
+            position: absolute;
+            left: 0;
+            top: 10px;
+        }
+        
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .service {
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 15px;
+            background: white;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #2c3e50, #3498db);
+        }
+        
+        .service:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+        }
+        
+        .service h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .service p {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        
+        .urgency-banner {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(231, 76, 60, 0.3);
+        }
+        
+        .urgency-banner h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+        
+        .urgency-banner p {
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+        
+        .reviews-section {
+            margin-bottom: 50px;
+        }
+        
+        .reviews-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            color: #2c3e50;
+            font-weight: 300;
+        }
+        
+        .reviews-container {
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+            padding: 20px 0;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .reviews-container::-webkit-scrollbar {
+            height: 8px;
+        }
+        
+        .reviews-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        .reviews-container::-webkit-scrollbar-thumb {
+            background: linear-gradient(90deg, #2c3e50, #3498db);
+            border-radius: 10px;
+        }
+        
+        .reviews-container::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(90deg, #34495e, #2980b9);
+        }
+        
+        .review-card {
+            min-width: 350px;
+            max-width: 350px;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-left: 4px solid #3498db;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .review-card::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 4rem;
+            color: #3498db;
+            opacity: 0.2;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .review-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #5a6c7d;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .review-author {
+            border-top: 1px solid #ecf0f1;
+            padding-top: 20px;
+        }
+        
+        .review-author strong {
+            color: #2c3e50;
+            font-size: 1.1rem;
+        }
+        
+        .review-author span {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        .cta-section {
+            text-align: center;
+            padding: 50px 40px;
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            border-radius: 20px;
+            color: white;
+            margin-top: 40px;
+        }
+        
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+        
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .cta-form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .order-type-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .order-type-btn {
+            flex: 1;
+            padding: 15px 20px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 10px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .order-type-btn:hover {
+            background: rgba(255,255,255,0.2);
+            border-color: rgba(255,255,255,0.5);
+        }
+        
+        .order-type-btn.active {
+            background: white;
+            color: #2c3e50;
+            border-color: white;
+            font-weight: 600;
+        }
+        
+        .conditional-form {
+            transition: opacity 0.3s ease;
+        }
+        
+        .file-upload-wrapper {
+            position: relative;
+        }
+        
+        .file-input {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+        
+        .file-upload-label {
+            display: block;
+            padding: 15px 20px;
+            border: 2px dashed rgba(255,255,255,0.3);
+            border-radius: 10px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .file-upload-label:hover {
+            background: rgba(255,255,255,0.2);
+            border-color: rgba(255,255,255,0.5);
+        }
+        
+        .file-upload-text {
+            display: block;
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-top: 5px;
+        }
+        
+        .form-input[multiple], select.form-input {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        
+        .form-input option {
+            background: #2c3e50;
+            color: white;
+        }
+        
+        textarea.form-input {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            backdrop-filter: blur(10px);
+        }
+        
+        .form-input::placeholder {
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .form-input:focus {
+            outline: none;
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .cta-button {
+            background: white;
+            color: #2c3e50;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 100%;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255,255,255,0.3);
+        }
+        
+        .contact-info {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .contact-item {
+            display: inline-block;
+            margin: 0 20px;
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+        
+        .contact-item strong {
+            opacity: 1;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .main-content {
+                margin: -20px 20px 40px;
+                padding: 40px 20px;
+            }
+            
+            .authors-section {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .services {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .contact-item {
+                display: block;
+                margin: 10px 0;
+            }
+            
+            .cta-section {
+                padding: 40px 20px;
+            }
+            
+            .review-card {
+                min-width: 280px;
+                max-width: 280px;
+                padding: 25px;
+            }
+            
+            .reviews-container {
+                gap: 20px;
+            }
+            
+            .problems-solutions-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .order-type-selector {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .cta-form {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-logo">
+                    <img src="images/logo.png" alt="PublishPro Logo">
+                    <!-- Если логотипа нет, уберите эту строку и раскомментируйте следующую -->
+                    <!-- <div class="hero-logo-placeholder">PP</div> -->
+                </div>
+                <h1><u>PublishPro</u></h1>
+                <div class="hero-subtitle">Коммерческое научное руководство</div>
+                <p>С 2016 года помогаем магистрантам, аспирантам, соискателям и молодым преподавателям публиковать научные статьи. Мы прошли этот путь сами и знаем все подводные камни научных публикаций.</p>
+              <a href="#order-form" class="hero-cta-button">Оформить заказ</a>
+</div>
+			</div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="main-content">
+            <h2 style="text-align: center; font-size: 2rem; margin-bottom: 40px; color: #2c3e50; font-weight: 300;">Кто мы?</h2>
+            
+            <div class="authors-section">
+                <div class="author-card">
+                    <div class="author-avatar">
+                        <img src="images/alexander.jpg" alt="Александр Койдан">
+                        <!-- Если фото нет, уберите эту строку и раскомментируйте следующую -->
+                        <!-- АК -->
+                    </div>
+                    <div class="author-name">Александр Койдан</div>
+                    <div class="author-title">Аспирант</div>
+                    <div class="author-desc">Закончил ЮФ МГУ в 2015-м г. по специальности "Гражданское право". Сейчас в аспирантуре, специализируюсь на конституционно-правовых исследованиях. За годы обучения и научной работы накопил обширные связи с редакторами ведущих журналов.</div>
+                </div>
+                
+                <div class="author-card">
+                    <div class="author-avatar">
+                        <img src="images/vitaly.jpg" alt="Виталий Пожидаев">
+                        <!-- Если фото нет, уберите эту строку и раскомментируйте следующую -->
+                        <!-- ВП -->
+                    </div>
+                    <div class="author-name">Виталий Пожидаев</div>
+                    <div class="author-title">Соискатель ученой степени кандидата наук</div>
+                    <div class="author-desc">Выпуск 2015 года. На соискательстве, прекрасно понимаю все сложности процесса подготовки диссертации и необходимости срочных публикаций.</div>
+                </div>
+            </div>
+            
+            <div class="problems-solutions-grid">
+                <div class="problem-section">
+                    <h2>Вам знакомы эти проблемы?</h2>
+                    <ul class="problem-list">
+                        <li>Не знаете, в каком журнале публиковать статью для вашей специальности</li>
+                        <li>Требования постоянно меняются: РИНЦ, ВАК, "белые списки" ВУЗов, Scopus...</li>
+                        <li>Рецензенты дают неконструктивные замечания, "заворачивая" статью</li>
+                        <li>Сроки поджимают, а процесс публикации затягивается на месяцы</li>
+                        <li>Не понимаете, как правильно оформить статью под требования журнала</li>
+                        <li>Статьи еще нет, а публикация уже нужна для аттестации</li>
+                    </ul>
+                </div>
+                
+                <div class="solution-section">
+                    <h2>Мы их решаем!</h2>
+                    <ul class="solution-list">
+                        <li>Подбираем оптимальный журнал для вашей темы и специальности</li>
+                        <li>Имеем прямые контакты с редакциями журналов по гуманитарным наукам</li>
+                        <li>Помогаем корректно ответить на замечания рецензентов</li>
+                        <li>Обеспечиваем ускоренное рассмотрение статьи при необходимости</li>
+                        <li>Консультируем по всем этапам публикационного процесса</li>
+                        <li>Поможем подготовить статью с нуля, если у вас есть только тема или идея</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="urgency-banner">
+                <h3>🔥 Срочная публикация</h3>
+                <p>Если у вас "горит" защита, можем организовать публикацию в кратчайшие сроки </p>
+            </div>
+            
+            <div class="services">
+                <div class="service">
+                    <div class="service-icon">📊</div>
+                    <h3>Подбор журнала и ускоренная публикация</h3>
+                    <p>Найдем подходящий журнал ВАК, РИНЦ или Scopus для вашей темы. При необходимости организуем быструю публикацию через наши связи с главными редакторами</p>
+                </div>
+                
+                <div class="service">
+                    <div class="service-icon">✏️</div>
+                    <h3>Работа с рецензентами</h3>
+                    <p>Поможем грамотно ответить на замечания рецензентов и довести статью до публикации</p>
+                </div>
+                
+                <div class="service">
+                    <div class="service-icon">🎯</div>
+                    <h3>Консультации по диссертации</h3>
+                    <p>Сопровождаем весь процесс подготовки диссертационного исследования от планирования до защиты</p>
+                </div>
+            </div>
+            
+            <div class="reviews-section">
+                <h2>Отзывы клиентов</h2>
+                <div class="reviews-container">
+                    <div class="review-card">
+                        <div class="review-text">
+                            "Помогли опубликовать статью по макроэкономике в журнале ВАК всего за месяц. Подобрали идеальный журнал под мою тему, проконсультировали по оформлению. Рецензенты приняли статью практически без замечаний."
+                        </div>
+                        <div class="review-author">
+                            <strong>Мария Волкова</strong><br>
+                            <span>Аспирантка, Экономический факультет МГУ</span>
+                        </div>
+                    </div>
+                    
+                    <div class="review-card">
+                        <div class="review-text">
+                            "Защита кандидатской была через 2 месяца, а нужна была еще одна публикация. Александр и Виталий буквально спасли ситуацию - нашли журнал со сжатыми сроками рассмотрения. Статья вышла как раз вовремя."
+                        </div>
+                        <div class="review-author">
+                            <strong>Дмитрий Семенов</strong><br>
+                            <span>Соискатель, Дипломатическая академия МИД РФ</span>
+                        </div>
+                    </div>
+                    
+                    <div class="review-card">
+                        <div class="review-text">
+                            "Очень довольна сотрудничеством. Ребята не просто помогли с публикацией, а объяснили весь процесс от А до Я. Теперь чувствую себя увереннее в академической среде. Статья по международным отношениям опубликована в РИНЦ."
+                        </div>
+                        <div class="review-author">
+                            <strong>Анна Петрова</strong><br>
+                            <span>Магистрантка, ФМП МГУ</span>
+                        </div>
+                    </div>
+                    
+                    <div class="review-card">
+                        <div class="review-text">
+                            "Работал с PublishPro над статьей по международному праву. Профессиональный подход, быстрая обратная связь. Особенно ценно, что ребята сами из МГУ и понимают специфику академической работы. Рекомендую."
+                        </div>
+                        <div class="review-author">
+                            <strong>Артем Козлов</strong><br>
+                            <span>Аспирант, Международное право МГИМО</span>
+                        </div>
+                    </div>
+                    
+                    <div class="review-card">
+                        <div class="review-text">
+                            "Искала помощь с публикацией статьи по теории государства и права. PublishPro не только помогли выбрать журнал, но и дали ценные советы по улучшению текста. Статья принята в журнал ВАК с первого раза."
+                        </div>
+                        <div class="review-author">
+                            <strong>Елена Морозова</strong><br>
+                            <span>Аспирантка, МГЮА им. О.Е. Кутафина</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="cta-section">
+            <h2>Оформить заказ</h2>
+            <p>Выберите подходящий вариант и расскажите о вашей ситуации</p>
+            
+            <div class="order-type-selector">
+                <button type="button" class="order-type-btn active" data-type="existing">
+                    📄 Нужна публикация готовой статьи
+                </button>
+                <button type="button" class="order-type-btn" data-type="new">
+                    ✏️ Нужна помощь в написании
+                </button>
+				<button type="button" class="order-type-btn" data-type="consultation">
+					💬 Хочу консультацию
+				</button>
+            </div>
+            
+            <form class="cta-form" netlify data-netlify="true" name="publishpro-orders" enctype="multipart/form-data" action="/thank-you.html">
+                <!-- Скрытые поля для Netlify -->
+                <input type="hidden" name="form-name" value="publishpro-orders">
+                <input type="hidden" name="order-type" id="hidden-order-type" value="existing">
+                
+                <div class="form-group">
+                    <input type="text" name="name" class="form-input" placeholder="Ваше имя" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" class="form-input" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" name="phone" class="form-input" placeholder="Телефон" required>
+                </div>
+                
+                <!-- Форма для существующей статьи -->
+                <div id="existing-article-form" class="conditional-form">
+                    <div class="form-group">
+                        <select name="service-type" class="form-input" required>
+                            <option value="">Что нужно сделать?</option>
+                            <option value="journal-selection">Подобрать журнал для публикации</option>
+                            <option value="publication-help">Помощь с процессом публикации</option>
+                            <option value="reviewer-response">Ответить на замечания рецензентов</option>
+                            <option value="urgent-publication">Срочная публикация</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select name="journal-type" class="form-input" required>
+                            <option value="">Тип журнала</option>
+                            <option value="vak">ВАК</option>
+                            <option value="rinc">РИНЦ</option>
+                            <option value="scopus">Scopus</option>
+                            <option value="wos">Web of Science</option>
+                            <option value="any">Любой подходящий</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="article-topic" class="form-input" placeholder="Тема статьи и научная область">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="speciality-code" class="form-input" placeholder="Шифр научной специальности (например, 12.00.01)">
+                    </div>
+                    <div class="form-group">
+                        <div class="file-upload-wrapper">
+                            <input type="file" name="article-file" id="article-file" class="file-input" accept=".doc,.docx,.pdf,.rtf">
+                            <label for="article-file" class="file-upload-label">
+                                📎 Прикрепить статью
+                                <span class="file-upload-text">DOC, DOCX, PDF, RTF до 10 МБ</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Форма для новой статьи/диссертации -->
+                <div id="new-work-form" class="conditional-form" style="display: none;">
+                    <div class="form-group">
+                        <select name="work-type" class="form-input" required>
+                            <option value="">Что нужно подготовить?</option>
+                            <option value="article">Научная статья</option>
+                            <option value="dissertation-help">Консультации по диссертации</option>
+                            <option value="dissertation-chapter">Глава диссертации</option>
+                            <option value="thesis-plan">План диссертационного исследования</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select name="scientific-field" class="form-input" required>
+                            <option value="">Научная область</option>
+                            <option value="law">Юриспруденция</option>
+                            <option value="economics">Экономика</option>
+                            <option value="management">Менеджмент</option>
+                            <option value="international-relations">Международные отношения</option>
+                            <option value="political-science">Политология</option>
+                            <option value="sociology">Социология</option>
+                            <option value="philosophy">Философия</option>
+                            <option value="history">История</option>
+                            <option value="other">Другое</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="research-topic" class="form-input" placeholder="Тема исследования">
+                    </div>
+                    <div class="form-group">
+                        <select name="urgency" class="form-input" required>
+                            <option value="">Срочность</option>
+                            <option value="week">В течение недели</option>
+                            <option value="month">В течение месяца</option>
+                            <option value="quarter">В течение 3 месяцев</option>
+                            <option value="not-urgent">Не срочно</option>
+                        </select>
+                    </div>
+                </div>
+					<!-- Форма для консультации -->
+<div id="consultation-form" class="conditional-form" style="display: none;">
+<div class="form-group">
+                    <textarea name="additional-info" class="form-input" rows="4" placeholder="Дополнительная информация (опционально)"></textarea>
+                </div>
+    <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 15px; margin-bottom: 30px;">
+        <h3 style="color: white; margin-bottom: 20px; text-align: center;">Свяжитесь напрямую с нашими экспертами</h3>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px; text-align: center;">
+                <h4 style="color: white; margin-bottom: 15px;">Александр Койдан</h4>
+                <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem; margin-bottom: 15px;">Связаться:</p>
+                <a href="https://t.me/koydan" target="_blank" style="display: block; background: #0088cc; color: white; padding: 10px; border-radius: 8px; text-decoration: none; margin-bottom: 10px;">
+                    📱 Telegram
+                </a>
+                <a href="https://wa.me/79689268646" target="_blank" style="display: block; background: #25D366; color: white; padding: 10px; border-radius: 8px; text-decoration: none; margin-bottom: 10px;">
+                    💬 WhatsApp
+                </a>
+                <a href="tel:+79689268646" style="display: block; background: rgba(255,255,255,0.2); color: white; padding: 10px; border-radius: 8px; text-decoration: none;">
+                    📞 Позвонить
+                </a>
+            </div>
+            
+            <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px; text-align: center;">
+                <h4 style="color: white; margin-bottom: 15px;">Виталий Пожидаев</h4>
+                <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem; margin-bottom: 15px;">Связаться:</p>
+                <a href="https://t.me/koydan" target="_blank" style="display: block; background: #0088cc; color: white; padding: 10px; border-radius: 8px; text-decoration: none; margin-bottom: 10px;">
+                    📱 Telegram
+                </a>		
+				<a hr<a href="https://wa.me/79661193877" target="_blank" style="display: block; background: #25D366; color: white; padding: 10px; border-radius: 8px; text-decoration: none; margin-bottom: 10px;">
+                    💬 WhatsApp
+                </a>
+                <a href="tel:+79661193877" style="display: block; background: rgba(255,255,255,0.2); color: white; padding: 10px; border-radius: 8px; text-decoration: none;">
+                    📞 Позвонить
+                </a>
+            </div>
+        </div>
+        
+        <p style="color: rgba(255,255,255,0.7); text-align: center; margin-top: 20px; font-size: 0.9rem;">
+            Или заполните форму выше для обратной связи
+        </p>
+    </div>
+</div>
+ 
+                
+                <button type="submit" class="cta-button">Отправить заявку</button>
+            </form>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <strong>Telegram:</strong> @publishpro_team
+                </div>
+                <div class="contact-item">
+                    <strong>Email:</strong> publish.pro@yandex.ru
+                </div>
+                <div class="contact-item">
+                    <strong>Время работы:</strong> Ежедневно 10:00-22:00
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Переключение между типами заказа
+        document.addEventListener('DOMContentLoaded', function() {
+            const orderTypeBtns = document.querySelectorAll('.order-type-btn');
+            const existingForm = document.getElementById('existing-article-form');
+            const newForm = document.getElementById('new-work-form');
+			const consultationForm = document.getElementById('consultation-form');
+            const fileInput = document.getElementById('article-file');
+            const fileLabel = document.querySelector('.file-upload-label');
+            const hiddenOrderType = document.getElementById('hidden-order-type');
+            
+            // Инициализация при загрузке страницы - устанавливаем required для активной формы
+            existingForm.querySelectorAll('select[name="service-type"], select[name="journal-type"]').forEach(field => {
+                field.setAttribute('required', 'required');
+            });
+            
+            orderTypeBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Убираем активный класс со всех кнопок
+                    orderTypeBtns.forEach(b => b.classList.remove('active'));
+                    // Добавляем активный класс к нажатой кнопке
+                    this.classList.add('active');
+                    
+                    const type = this.getAttribute('data-type');
+                    
+                    // Записываем тип заказа в скрытое поле для Netlify
+                    if (hiddenOrderType) {
+                        hiddenOrderType.value = type === 'existing' ? 'У меня есть статья' : 'Нужно написать статью/диссертацию';
+                    }
+                    
+                    if (type === 'existing') {
+    existingForm.style.display = 'block';
+    newForm.style.display = 'none';
+    consultationForm.style.display = 'none';
+    // Очищаем поля других форм
+    newForm.querySelectorAll('input, select, textarea').forEach(field => {
+        field.removeAttribute('required');
+    });
+    // Добавляем required к полям существующей статьи
+    existingForm.querySelectorAll('select[name="service-type"], select[name="journal-type"]').forEach(field => {
+        field.setAttribute('required', 'required');
+    });
+} else if (type === 'new') {
+    existingForm.style.display = 'none';
+    newForm.style.display = 'block';
+    consultationForm.style.display = 'none';
+    // Очищаем поля других форм
+    existingForm.querySelectorAll('input, select, textarea').forEach(field => {
+        field.removeAttribute('required');
+    });
+    // Добавляем required к полям новой статьи
+    newForm.querySelectorAll('select[name="work-type"], select[name="scientific-field"], select[name="urgency"]').forEach(field => {
+        field.setAttribute('required', 'required');
+    });
+} else if (type === 'consultation') {
+    existingForm.style.display = 'none';
+    newForm.style.display = 'none';
+    consultationForm.style.display = 'block';
+    // Убираем required со всех полей форм
+    existingForm.querySelectorAll('input, select, textarea').forEach(field => {
+        field.removeAttribute('required');
+    });
+    newForm.querySelectorAll('input, select, textarea').forEach(field => {
+        field.removeAttribute('required');
+    });
+                    }
+                });
+            });
+            
+            // Обработка загрузки файла
+            if (fileInput) {
+                fileInput.addEventListener('change', function() {
+                    const file = this.files[0];
+                    if (file) {
+                        const fileName = file.name;
+                        const fileSize = (file.size / 1024 / 1024).toFixed(2);
+                        fileLabel.innerHTML = `
+                            📎 ${fileName}
+                            <span class="file-upload-text">${fileSize} МБ</span>
+                        `;
+                        fileLabel.style.borderColor = 'rgba(255,255,255,0.8)';
+                        fileLabel.style.background = 'rgba(255,255,255,0.2)';
+                    } else {
+                        fileLabel.innerHTML = `
+                            📎 Прикрепить статью
+                            <span class="file-upload-text">DOC, DOCX, PDF, RTF до 10 МБ</span>
+                        `;
+                        fileLabel.style.borderColor = 'rgba(255,255,255,0.3)';
+                        fileLabel.style.background = 'rgba(255,255,255,0.1)';
+                    }
+                });
+            }
+            
+            // Обработка отправки формы - теперь Netlify обрабатывает автоматически
+            document.querySelector('.cta-form').addEventListener('submit', function(e) {
+                // Показываем сообщение об отправке (опционально)
+                const button = this.querySelector('.cta-button');
+                button.textContent = 'Отправляем...';
+                button.disabled = true;
+                
+                // Netlify автоматически обработает форму и перенаправит на страницу благодарности
+                // Можно добавить собственную страницу благодарности через атрибут action="/thank-you"
+            });
+        });
+    </script>
+</body>
+</html>
