@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Заявка отправлена - PublishPro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .thank-you-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            padding: 60px 40px;
+            max-width: 600px;
+            text-align: center;
+            margin: 20px;
+        }
+        
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 30px;
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: white;
+        }
+        
+        .thank-you-title {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+        
+        .thank-you-message {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+        
+        .contact-info {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .contact-info h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .contact-item {
+            margin: 10px 0;
+            color: #5a6c7d;
+            font-size: 1rem;
+        }
+        
+        .contact-item strong {
+            color: #2c3e50;
+        }
+        
+        .back-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(52, 152, 219, 0.3);
+        }
+        
+        .timeline {
+            background: #ecf0f1;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: left;
+        }
+        
+        .timeline h4 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .timeline-item {
+            margin: 10px 0;
+            color: #5a6c7d;
+            font-size: 0.95rem;
+        }
+        
+        @media (max-width: 768px) {
+            .thank-you-container {
+                padding: 40px 20px;
+                margin: 10px;
+            }
+            
+            .thank-you-title {
+                font-size: 2rem;
+            }
+            
+            .thank-you-message {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="thank-you-container">
+        <div class="success-icon">✓</div>
+        
+        <h1 class="thank-you-title">Заявка отправлена!</h1>
+        
+        <p class="thank-you-message">
+            Спасибо за обращение в PublishPro! Мы получили вашу заявку и обязательно свяжемся с вами в ближайшее время для обсуждения деталей.
+        </p>
+                
+        <div class="timeline">
+            <h4>Что происходит дальше?</h4>
+            <div class="timeline-item">📞 <strong>В течение 2-4 часов</strong> - свяжемся для уточнения деталей</div>
+            <div class="timeline-item">💰 <strong>В тот же день</strong> - предложим стоимость и сроки</div>
+            <div class="timeline-item">🚀 <strong>После согласования</strong> - начинаем работу над вашим заказом</div>
+        </div>
+        
+        <a href="/" class="back-button">Вернуться на главную</a>
+    </div>
+</body>
+</html>
